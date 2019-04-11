@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>vue入门</title>
+    
+    <script src="./vue.js"></script>
+</head>
+    
+<body>
+    <div id="v" >       
+        <div :title="title1">{{msg}}</div>
+        <input v-model="title1"/>
+        <div v-html="title1"></div>
+        <hr />
+
+          姓：<input v-model="firstname"/>
+          名：<input v-model="lastname"/>
+        <div>{{fullname}}</div>
+        <div>{{count}}</div>
+        <hr />
+
+        <div v-if="xianshi">hello,world</div>
+        <button type="button" @click="ck">消失</button> 
+        <ul>
+            <li v-for="xx of list":key="xx"> {{xx}} </li>
+        </ul>
+        
+        
+    </div>  
+        <script >
+            new Vue({
+                el: "#v",
+                data: {
+                    msg: "hello,world!!",
+                    number: "123",
+                    title1: "this is",
+
+                    firstname:'',
+                    lastname:'',
+                    count: 0,
+
+                    xianshi: true,
+                    list:[1,2,3,4,5]
+                },
+                computed:{
+                    fullname:function(){
+                        return this.firstname+this.lastname;                    
+                    }
+                },
+                watch: {
+                    fullname: function () {
+                        this.count++;
+                    }
+                },
+
+                methods: {
+                    ck: function () {
+                        this.xianshi = !this.xianshi;
+                    }
+                }
+
+            })
+    </script>
+</body>
+</html>
